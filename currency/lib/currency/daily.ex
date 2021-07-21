@@ -8,8 +8,8 @@ defmodule Currency.Daily do
     IO.puts "---------------get_currencies--------------"
 
     case result do
-      {:ok, []} -> []
-      _ -> result
+      {:ok, currencies} -> currencies
+      _ -> nil
     end
 
   end
@@ -29,8 +29,7 @@ defmodule Currency.Daily do
     usd = %{:name => usd_name, :value => usd_value}
     eur = %{:name => eur_name, :value => eur_value}
 
-    ###{:ok, [usd, eur]}
-    [usd, eur]
+    {:ok, [usd, eur]}
   end
   defp pull_currencies(_), do: :error
 

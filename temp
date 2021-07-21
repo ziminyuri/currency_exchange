@@ -1,0 +1,21 @@
+    case result do
+      {:ok, currencies} -> currencies
+      :error -> 'There is an error with getting currencies'
+    end
+
+    IO.puts "-----------------------------"
+    IO.inspect currencies
+    IO.puts "-----------------------------"
+
+  end
+
+  defp parse_resp({:ok, %HTTPoison.Response{body: body, status_code: 200}}) do
+    body |> Jason.decode! |> pull_currencies
+  end
+
+  defp pull_currencies(pull_currencies) do
+    IO.puts "-----------------------------"
+    IO.inspect pull_currencies
+    IO.puts "-----------------------------"
+
+  end

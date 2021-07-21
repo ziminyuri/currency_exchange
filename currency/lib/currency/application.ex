@@ -14,9 +14,10 @@ defmodule Currency.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Currency.PubSub},
       # Start the Endpoint (http/https)
-      CurrencyWeb.Endpoint
+      CurrencyWeb.Endpoint,
       # Start a worker by calling: Currency.Worker.start_link(arg)
       # {Currency.Worker, arg}
+      #Worker.(Currency.Cache, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
