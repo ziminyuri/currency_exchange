@@ -10,16 +10,17 @@
         <th scope="col">#</th>
         <th scope="col">Наименование</th>
         <th scope="col">Курс к рублю</th>
-        <th scope="col">Handle</th>
       </tr>
       </thead>
       <tbody>
+      <%= for currency <-@currencies do %>
       <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row">1
+        </th>
+        <td><%= currency.name %></td>
+        <td><%= currency.value %></td>
       </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

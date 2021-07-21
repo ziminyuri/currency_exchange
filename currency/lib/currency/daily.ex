@@ -8,6 +8,7 @@ defmodule Currency.Daily do
     IO.puts "---------------get_currencies--------------"
 
     case result do
+      {:ok, []} -> []
       _ -> result
     end
 
@@ -19,10 +20,17 @@ defmodule Currency.Daily do
   defp parse_resp(_), do: :error
 
   defp pull_currencies(body) do
-    %{"Valute" => %{"USD" => usd}} = body
-    %{"Valute" => %{"EUR" => eur}} = body
-    %{"Timestamp" => timestamp} = body
-    {:ok, usd, eur, timestamp}
+    %{"Valute" => %{"USD" => %{"Name" => usd_name}}} = body
+    %{"Valute" => %{"USD" => %{"Value" => usd_value}}} = body
+
+    %{"Valute" => %{"EUR" => %{"Name" => eur_name}}} = body
+    %{"Valute" => %{"EUR" => %{"Value" => eur_value}}} = body
+
+    usd = %{:name => usd_name, :value => usd_value}
+    eur = %{:name => eur_name, :value => eur_value}
+
+    ###{:ok, [usd, eur]}
+    [usd, eur]
   end
   defp pull_currencies(_), do: :error
 
