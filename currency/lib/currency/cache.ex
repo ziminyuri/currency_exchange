@@ -8,6 +8,7 @@ defmodule Currency.Cache do
   def init(_) do
     IO.puts("Creating ETS #{@name}")
     :ets.new(:cache, [:public, :named_table])
+    Currency.JobScheduler.write_values()
     {:ok, "ETS Created"}
   end
 
