@@ -5,6 +5,11 @@
 <div class="container">
     <div class="row mt-2">
 
+        <%= form_for @conn, Routes.page_path(@conn, :converter_post), [as: :email], fn f -> %>
+        <%= text_input f, :whom %>
+        <%= submit "Конвертировать" %>
+        <% end %>
+
     </div>
 </div>
 

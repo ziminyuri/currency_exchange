@@ -18,6 +18,7 @@ defmodule CurrencyWeb.Router do
 
     get "/", PageController, :index
     get "/converter", PageController, :converter
+    post "/converter_post", PageController, :converter_post
   end
 
   # Other scopes may use custom stacks.

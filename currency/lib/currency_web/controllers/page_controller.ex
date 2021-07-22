@@ -4,25 +4,19 @@ defmodule CurrencyWeb.PageController do
   alias Currency.{Daily, Repo, Cache, Transform}
 
   def index(conn, _params) do
-    #result = Daily.get_currencies()
-
-    #IO.puts "-----------index------------------"
-    #IO.inspect result
-    #IO.puts "-------------index----------------"
-
-    #Cache.insert(result)
-    table = Cache.all()
-
-    IO.puts "-----------table------------------"
-    IO.inspect table
-    IO.puts "-------------table----------------"
-
-    render conn, "index.html", currencies: table
-
+    render conn, "index.html", currencies: Cache.all()
   end
-
 
   def converter(conn, _params) do
     render(conn, "converter.html")
   end
+
+  def converter_post(conn, params) do
+    IO.puts("-----------post--------------")
+    whom = params["email"]["whom"]
+    IO.inspect whom
+    IO.puts("-----------post--------------")
+    render(conn, "converter.html")
+  end
+
 end
