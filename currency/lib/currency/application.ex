@@ -1,6 +1,4 @@
 defmodule Currency.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
 
   use Application
@@ -17,7 +15,8 @@ defmodule Currency.Application do
       CurrencyWeb.Endpoint,
       # Start a worker by calling: Currency.Worker.start_link(arg)
       # {Currency.Worker, arg}
-      Currency.Cache
+      Currency.Cache,
+      Currency.JobScheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

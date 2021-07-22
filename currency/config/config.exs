@@ -7,6 +7,16 @@
 # General application configuration
 use Mix.Config
 
+config :currency, Currency.JobScheduler,
+       jobs: [
+         # Every minute
+         {"* * * * *", fn -> IO.puts("Hello CRON") end},
+
+         # Every second
+         {{:extended, "* * * * * *"}, {IO, :puts, ["hello from cron"]}},
+         {{:extended, "* * * * *"}, {IO, :puts, ["hello from cron123"]}},
+       ]
+
 config :currency,
   ecto_repos: [Currency.Repo]
 
@@ -25,6 +35,8 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
