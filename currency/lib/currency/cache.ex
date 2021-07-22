@@ -12,9 +12,9 @@ defmodule Currency.Cache do
   end
 
   def insert(currencies) do
-    IO.puts("insert")
+    #IO.puts("insert")
     for c <- currencies do
-      IO.puts("insert #{c.name} #{c.value}")
+      #IO.puts("insert #{c.name} #{c.value}")
       :ets.insert(:cache, {c.code, c.name, c.value})
     end
   end
@@ -22,9 +22,9 @@ defmodule Currency.Cache do
   def lookup(key), do: :ets.lookup(:cache, key)
 
   def all() do
-    IO.puts("all")
+    #IO.puts("all")
     table = :ets.tab2list(:cache)
-    IO.puts("all")
+    #IO.puts("all")
 
     case table do
       _ -> table

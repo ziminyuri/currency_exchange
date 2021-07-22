@@ -7,7 +7,7 @@
     <table class="table">
       <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">Код</th>
         <th scope="col">Наименование</th>
         <th scope="col">Курс к рублю</th>
       </tr>
@@ -15,10 +15,9 @@
       <tbody>
       <%= for currency <-@currencies do %>
       <tr>
-        <th scope="row">1
-        </th>
-        <td><%= currency.name %></td>
-        <td><%= currency.value %></td>
+        <td><%= elem(currency, 0) %></td>
+        <td><%= elem(currency, 1) %></td>
+        <td><%= elem(currency, 2) %></td>
       </tr>
       <% end %>
       </tbody>

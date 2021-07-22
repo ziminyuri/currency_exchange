@@ -12,7 +12,7 @@ config :currency, Currency.JobScheduler,
          # Every minute
          #{"* * * * *", fn -> IO.puts("Hello CRON") end},
          # Every sec
-         {{:extended, "*/30 * * * *"}, fn -> Currency.JobScheduler.write_values() end},
+         {{:extended, "*/50 * * * *"}, fn -> Currency.JobScheduler.write_values() end},
          #{{"* * * * *"}, fn -> Currency.JobScheduler.write_values() end},
        ]
 

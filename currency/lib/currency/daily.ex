@@ -16,6 +16,8 @@ defmodule Currency.Daily do
   defp parse_resp(_), do: :error
 
   defp pull_currencies(body) do
+
+    # Warning говнокод
     %{"Valute" => %{"USD" => %{"Name" => usd_name}}} = body
     %{"Valute" => %{"USD" => %{"Value" => usd_value}}} = body
     %{"Valute" => %{"USD" => %{"CharCode" => usd_code}}} = body
