@@ -17,7 +17,7 @@ defmodule Currency.Application do
       CurrencyWeb.Endpoint,
       # Start a worker by calling: Currency.Worker.start_link(arg)
       # {Currency.Worker, arg}
-      #Worker.(Currency.Cache, [])
+      Currency.Cache
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

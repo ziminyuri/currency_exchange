@@ -1,32 +1,34 @@
 defmodule Currency.Cache do
   use GenServer
 
-  def start_link do
-    GenServer.start_link(__MODULE__, %{}, name: CurrCache)
+  @name __MODULE__
+
+  def start_link(_), do: GenServer.start_link(__MODULE__, [], name: @name)
+
+  def init(_) do
+    IO.puts("Creating ETS #{@name}")
+    :ets.new(:cache, [:public, :named_table])
+    {:ok, "ETS Created"}
   end
 
-  def init(state) do
-    :ets.new(:currency_cache, [:set, :public, :named_table])
-    {:ok, state}
+  def insert(currencies) do
+    IO.puts("insert")
+    for c <- currencies do
+      IO.puts("insert #{c.name} #{c.value}")
+      :ets.insert(:cache, {c.code, c.name, c.value})
+    end
   end
 
-  def delete(key) do
-    GenServer.cast(CurrCache, {:delete, key})
-  end
+  def lookup(key), do: :ets.lookup(:cache, key)
 
-  def get(key) do
-    GenServer.call(CurrCache, {:get, key})
-  end
+  def all() do
+    IO.puts("all")
+    table = :ets.tab2list(:cache)
+    IO.puts("all")
 
-  #Internal API
-
-  def handle_call({:get, key}, _from, state) do
-    :ets.lookup(:currency_cache, key)
-  end
-
-  def handle_cast({:delete, key}, state) do
-    :ets.delete(:currency_cache, key)
-    {:noreply, state}
+    case table do
+      _ -> table
+    end
   end
 
 end

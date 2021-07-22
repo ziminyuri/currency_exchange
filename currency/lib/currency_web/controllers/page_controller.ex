@@ -1,7 +1,7 @@
 defmodule CurrencyWeb.PageController do
   use CurrencyWeb, :controller
 
-  alias Currency.{Daily, Repo}
+  alias Currency.{Daily, Repo, Cache}
 
   def index(conn, _params) do
     result = Daily.get_currencies()
@@ -9,6 +9,13 @@ defmodule CurrencyWeb.PageController do
     IO.puts "-----------index------------------"
     IO.inspect result
     IO.puts "-------------index----------------"
+
+    Cache.insert(result)
+
+    table = Cache.all()
+    IO.puts "-----------table------------------"
+    IO.inspect table
+    IO.puts "-------------table----------------"
 
     render conn, "index.html", currencies: result
 
