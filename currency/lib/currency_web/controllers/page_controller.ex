@@ -6,15 +6,15 @@ defmodule CurrencyWeb.PageController do
   def index(conn, _params) do
     result = Daily.get_currencies()
 
-    IO.puts "-----------index------------------"
-    IO.inspect result
-    IO.puts "-------------index----------------"
+    #IO.puts "-----------index------------------"
+    #IO.inspect result
+    #IO.puts "-------------index----------------"
 
-    Cache.insert(result)
+    #Cache.insert(result)
 
-    table = Cache.all()
+    #table = Cache.all()
     IO.puts "-----------table------------------"
-    IO.inspect table
+    #IO.inspect table
     IO.puts "-------------table----------------"
 
     render conn, "index.html", currencies: result
