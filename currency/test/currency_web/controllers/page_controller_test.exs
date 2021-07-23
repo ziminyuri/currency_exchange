@@ -66,5 +66,4 @@ defmodule CurrencyWeb.PageControllerTest do
     value_after_convert = elem(data_from_cache, 2) * -123
     assert html_response(conn, 200) =~ "#{value_after_convert}"
   end
-
 end

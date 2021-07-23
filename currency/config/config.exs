@@ -9,11 +9,7 @@ use Mix.Config
 
 config :currency, Currency.JobScheduler,
        jobs: [
-         # Every minute
-         #{"* * * * *", fn -> IO.puts("Hello CRON") end},
-         # Every sec
-         {{:extended, "*/50 * * * *"}, fn -> Currency.JobScheduler.write_values() end},
-         #{{"* * * * *"}, fn -> Currency.JobScheduler.write_values() end},
+         {{:cron, "*/30 * * * *"}, fn -> Currency.JobScheduler.write_values() end},
        ]
 
 config :currency,
