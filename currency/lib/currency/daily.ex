@@ -2,12 +2,6 @@ defmodule Currency.Daily do
 
   def get_currencies() do
     result = "https://www.cbr-xml-daily.ru/daily_json.js" |> HTTPoison.get |> parse_resp
-
-    case result do
-      {:ok, currencies} -> currencies
-      :error -> nil
-    end
-
   end
 
   defp parse_resp({:ok, %HTTPoison.Response{body: body, status_code: 200}}) do

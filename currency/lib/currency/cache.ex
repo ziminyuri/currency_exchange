@@ -23,6 +23,7 @@ defmodule Currency.Cache do
     table = :ets.tab2list(:cache)
 
     case table do
+      [] -> nil
       _ -> table
     end
   end

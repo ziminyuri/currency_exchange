@@ -8,6 +8,7 @@ defmodule CurrencyWeb.PageController do
     render conn, "index.html", currencies: table
   end
 
+
   def converter(conn, _params) do
     table = Cache.all()
     render conn, "converter.html", currencies: table, converter_value: nil

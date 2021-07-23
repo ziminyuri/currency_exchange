@@ -4,6 +4,7 @@
 
 <div class="container">
   <div class="row mt-2">
+    <%= if @currencies do %>
     <table class="table">
       <thead>
       <tr>
@@ -22,6 +23,12 @@
       <% end %>
       </tbody>
     </table>
+    <% end %>
+
+    <%= unless @currencies do %>
+    <p>Ошибка при загрузке данных. Попробуйте позже</p>
+    <% end %>
+
   </div>
 </div>
 

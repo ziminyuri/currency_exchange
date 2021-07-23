@@ -3,6 +3,11 @@ defmodule Currency.JobScheduler do
 
   def write_values() do
     result = Currency.Daily.get_currencies()
-    Currency.Cache.insert(result)
+    case result do
+      {:ok, result} -> Currency.Cache.insert(result)
+      :error -> nil
+    end
+
+
   end
 end

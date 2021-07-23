@@ -4,6 +4,11 @@
 
 <div class="container">
     <div class="row mt-2">
+        <%= unless @currencies do %>
+        <p>Ошибка при загрузке данных. Попробуйте позже</p>
+        <% end %>
+
+        <%= if @currencies do %>
 
         <%= form_for @conn, Routes.page_path(@conn, :converter_post), [as: :converter_form], fn f -> %>
 
@@ -20,6 +25,8 @@
             Сумма в рублях после конвертации: <%= inspect(@converter_value)%>
         </label>
         <% end %>
+
+         <% end %>
 
 
 
