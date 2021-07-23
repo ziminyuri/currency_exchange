@@ -19,4 +19,20 @@ defmodule CurrencyWeb.PageControllerTest do
     end
   end
 
+  test "cache has info about USD" do
+    data_from_cache = Currency.Cache.lookup("USD") |> List.first
+
+    assert elem(data_from_cache, 0) == "USD"
+    assert elem(data_from_cache, 1) == "Доллар США"
+    assert tuple_size(data_from_cache) == 3
+  end
+
+  test "cache has info about EUR" do
+    data_from_cache = Currency.Cache.lookup("EUR") |> List.first
+
+    assert elem(data_from_cache, 0) == "EUR"
+    assert elem(data_from_cache, 1) == "Евро"
+    assert tuple_size(data_from_cache) == 3
+  end
+
 end
