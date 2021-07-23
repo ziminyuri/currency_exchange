@@ -10,25 +10,20 @@ defmodule CurrencyWeb.PageController do
 
   def converter(conn, _params) do
     table = Cache.all()
-    render conn, "converter.html", currencies: table
+    render conn, "converter.html", currencies: table, converter_value: nil
   end
 
   def converter_post(conn, params) do
-    IO.puts("-----------post--------------")
     currency_code = params["converter_form"]["currency_code"]
-    sum = params["converter_form"]["sum"]
+    value_before_convert = params["converter_form"]["input_value_before_convert"]
 
     currency_data =  currency_code |> Cache.lookup |> List.first
     currency_value = elem(currency_data, 2)
-    sum1 = String.to_float("12")
+    value_before_convert =  elem(Float.parse(value_before_convert), 0)
+    converter_value = value_before_convert * currency_value
 
-    IO.inspect sum1
-    IO.inspect currency_code
-    IO.inspect currency_value
-    IO.puts("-----------post--------------")
     table = Cache.all()
-    render conn, "converter.html", currencies: table
+    render conn, "converter.html", currencies: table, converter_value: converter_value
 
   end
-
 end

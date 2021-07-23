@@ -11,9 +11,17 @@
             Валюта: <%= select f, :currency_code, Enum.map(@currencies, &{elem(&1, 0), elem(&1, 0)}) , class: "form-control form-select"%>
         </label>
 
-        <%= number_input f, :sum, class: "form-control mt-3", placeholder: "Сумма в рублях"%>
+        <%= number_input f, :input_value_before_convert, class: "form-control mt-3", placeholder: "Сумма в рублях"%>
         <%= submit "Конвертировать", class: "btn btn-outline-primary mt-3"%>
         <% end %>
+
+        <%= if @converter_value do %>
+        <label class="mt-5">
+            Сумма в рублях после конвертации: <%= inspect(@converter_value)%>
+        </label>
+        <% end %>
+
+
 
     </div>
 </div>
