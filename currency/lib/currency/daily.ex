@@ -10,21 +10,24 @@ defmodule Currency.Daily do
   defp parse_resp(_), do: :error
 
   defp pull_currencies(body) do
+    try do
+      # Warning говнокод
+      %{"Valute" => %{"USD" => %{"Name" => usd_name}}} = body
+      %{"Valute" => %{"USD" => %{"Value" => usd_value}}} = body
+      %{"Valute" => %{"USD" => %{"CharCode" => usd_code}}} = body
 
-    # Warning говнокод
-    %{"Valute" => %{"USD" => %{"Name" => usd_name}}} = body
-    %{"Valute" => %{"USD" => %{"Value" => usd_value}}} = body
-    %{"Valute" => %{"USD" => %{"CharCode" => usd_code}}} = body
+      %{"Valute" => %{"EUR" => %{"Name" => eur_name}}} = body
+      %{"Valute" => %{"EUR" => %{"Value" => eur_value}}} = body
+      %{"Valute" => %{"EUR" => %{"CharCode" => eur_code}}} = body
 
-    %{"Valute" => %{"EUR" => %{"Name" => eur_name}}} = body
-    %{"Valute" => %{"EUR" => %{"Value" => eur_value}}} = body
-    %{"Valute" => %{"EUR" => %{"CharCode" => eur_code}}} = body
+      usd = %{:name => usd_name, :value => usd_value, :code => usd_code}
+      eur = %{:name => eur_name, :value => eur_value, :code => eur_code}
 
-    usd = %{:name => usd_name, :value => usd_value, :code => usd_code}
-    eur = %{:name => eur_name, :value => eur_value, :code => eur_code}
+      {:ok, [usd, eur]}
+    rescue
+      _ -> :error
+    end
 
-    {:ok, [usd, eur]}
-    #[usd, eur]
   end
   defp pull_currencies(_), do: :error
 
