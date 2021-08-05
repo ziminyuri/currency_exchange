@@ -9,24 +9,10 @@ defmodule Currency.Daily do
   end
   defp parse_resp(_), do: :error
 
-  defp pull_currencies(body) do
-    try do
-      # Warning говнокод
-      %{"Valute" => %{"USD" => %{"Name" => usd_name}}} = body
-      %{"Valute" => %{"USD" => %{"Value" => usd_value}}} = body
-      %{"Valute" => %{"USD" => %{"CharCode" => usd_code}}} = body
-
-      %{"Valute" => %{"EUR" => %{"Name" => eur_name}}} = body
-      %{"Valute" => %{"EUR" => %{"Value" => eur_value}}} = body
-      %{"Valute" => %{"EUR" => %{"CharCode" => eur_code}}} = body
-
-      usd = %{:name => usd_name, :value => usd_value, :code => usd_code}
-      eur = %{:name => eur_name, :value => eur_value, :code => eur_code}
-
-      {:ok, [usd, eur]}
-    rescue
-      _ -> :error
-    end
+  defp pull_currencies(%{"Valute" => valute} = _body) do
+    result = Enum.map(valute, fn{code, %{"Name" => name, "Value" => value}} -> %{name: name, value: value, code: code}
+    end)
+    {:ok, result}
 
   end
   defp pull_currencies(_), do: :error
